@@ -13,9 +13,11 @@
 A multi-purpose Discord bot written in Python using [Disnake](https://github.com/DisnakeDev/disnake) with the aim to be heavily customizable*
 >*Not fully implemented yet *(ironic)*, read "[Project Plans](#project-plans)" or "[todo.md](./todo.md)"
 
+*This bot is NOT PG, there's no profanity filter yet so cover your children's eyes.*
+
 <br />
 
-**Huge thanks to [Caeden PH](https://github.com/CaedenPH) and contributors for making [JesterBot](https://github.com/CaedenPH/JesterBot), which the structure and most functionality of this bot was heavily inspired by. Please go check out their repository!**
+**Huge thanks to [CaedenPH](https://github.com/CaedenPH) and contributors for making [JesterBot](https://github.com/CaedenPH/JesterBot), which the structure and most functionality of this bot was heavily inspired by. Please go check out their repository!**
 
 <br />
 
