@@ -1,4 +1,4 @@
-# Security
+# Security Policy
 
 > [!IMPORTANT]
 > Use this section to see what versions of ForeignBot that are currently being supported with security updates.

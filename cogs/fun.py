@@ -5,8 +5,6 @@ import io
 
 from disnake.ext import commands
 from fbot import ForeignBot
-from PIL import Image, ImageFilter
-from glitch_this import ImageGlitcher
 
 class FunCommands(commands.Cog):
 
