@@ -6,7 +6,7 @@
 </p>
 
 A multi-purpose Discord bot written in Python using [Disnake](https://github.com/DisnakeDev/disnake) with the aim to be heavily customizable*
->*Not fully implemented yet *(ironic)*, read "[Project Plans]" or "[todo.md](./todo.md)"
+>*Not fully implemented yet *(ironic)*, read "[Project Plans](#project-plans)" or "[todo.md](./todo.md)"
 
 <br />
 
@@ -29,3 +29,27 @@ This stage of development is rocky! During this stage I'm mainly focused on seei
 Optimization and efficiency is my second priority during this time, if you find bugs or propose a better method to my madness, please open an [issue].
 
 Keep in mind the source code during this time will look chaotic, as updates go along and new features are added the source code will be more and more presentable.
+
+# Project Plans
+Here's a list of what I have planned for future features, explained in more detail compared to the [todo.md](./todo.md) file.
+<br />
+
+If anything ends with a question mark then it isn't fully decided whether it will be added or not. No guarantees!
+<br />
+Order is not important, but anything **bolded** is considered a higher priority. However [todo.md](./todo.md) follows a structural heirarchy.
+
+
+- Moderation
+  - 
+  - Create the moderation cog and basic moderation commands.
+- Economy
+  - 
+  - Better shop handling and inventory management.
+  - Simulated stock market where users can invest in fake stocks for ForeignCoins?
+    - *Maybe add the ability for users to create their own stocks that other users can invest in with a certain amount of ForeignCoins?*
+- Miscellaneous
+  - 
+  - More robust achievement handling, current system is held together by hopes and dreams.
+    - *Remove the achievement system?*
+  - **Add the entire gimmick of this Discord bot, customization.**
+  - The ability to actually use items, only item with any current ability is the Scary Mask.
