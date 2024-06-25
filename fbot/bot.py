@@ -125,7 +125,7 @@ class ForeignBot(Bot):
 
         print(f"{f.YELLOW}(bot.py) ForeignBot.create_guild_table : {f.WHITE} created guild table ({message.guild.id})({message.guild.name}) into database")
 
-    async def find_prefixes(self, guild_id: int) -> str:
+    async def find_prefix(self, guild_id: int) -> str:
         result = await self.db.fetchone(
             "SELECT prefix FROM guilds WHERE guild_id = ?", (guild_id,)
         )
@@ -150,7 +150,7 @@ class ForeignBot(Bot):
         )
 
     async def get_prefix(self, message: Message) -> str:
-        prefix = await self.find_prefixes(message.guild.id)
+        prefix = await self.find_prefix(message.guild.id)
         return when_mentioned_or(prefix)(self, message)
     
     async def process_commands(self, message: Message) -> None:
@@ -210,8 +210,7 @@ class ForeignBot(Bot):
 
         if not await self.check_user_exists(message.author.id):
             await self.create_user_table(message.author.id)
-        
-        if not await self.check_inventory_exists(message.author.id):
+        elif not await self.check_inventory_exists(message.author.id):
             await self.create_user_inventory(message.author.id)
         
         if not guild_result:

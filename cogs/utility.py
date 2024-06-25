@@ -14,14 +14,10 @@ class UtilityCommands(commands.Cog):
 
     @commands.command()
     async def prefix(self, ctx: commands.Context) -> None:
-        result = await self.bot.db.fetchone(
-            "SELECT prefix FROM guilds WHERE guild_id = ?", (ctx.guild.id,)
-        )
-
         embed = (
             disnake.Embed(
                 colour=disnake.Colour.og_blurple(),
-                description=f"the current prefix is \'**{result[0]}**\'"
+                description=f"the current prefix is \'**{await self.bot.find_prefix(ctx.guild.id)}**\'"
             )
         )
 
@@ -34,13 +30,9 @@ class UtilityCommands(commands.Cog):
         ]
     )
     async def setprefix(self, ctx: commands.Context, *, prefix: typing.Optional[str]) -> None:
-        result = await self.bot.db.fetchone(
-            "SELECT prefix FROM guilds WHERE guild_id = ?", (ctx.guild.id,)
-        )
-
         if not prefix:
-            return await ctx.send(f"my guy u need a prefix i can set to\n```{result[0]}setprefix <new prefix>```")
-        elif prefix == result[0]:
+            return await ctx.send(f"my guy u need a prefix i can set to\n```{await self.bot.find_prefix(ctx.guild.id)}setprefix <new prefix>```")
+        elif prefix == await self.bot.find_prefix(ctx.guild.id):
             return await ctx.send("uhhh dude u already have that prefix")
         elif prefix == "reset":
             prefix = "fb$"
@@ -64,19 +56,18 @@ class UtilityCommands(commands.Cog):
         ]
     )
     async def notifications(self, ctx: commands.Context, value: typing.Optional[bool] = None) -> None:
-        result = await self.bot.db.fetchone(
-            "SELECT prefix FROM guilds WHERE guild_id = ?", (ctx.guild.id,)
-        )
+        if not await self.bot.check_user_exists(ctx.author.id):
+            await self.bot.create_user_table(ctx.author.id)
 
         if value is None:
-            return await ctx.send(f"brotha i need smth to change ur setting to\n```{result[0]}notifications <true/false>```")
+            return await ctx.send(f"brotha i need smth to change ur setting to\n```{await self.bot.find_prefix(ctx.guild.id)}notifications <true/false>```")
         
         embed = (
             disnake.Embed(
                 colour=disnake.Colour.green(),
             )
         )
-        
+
         if value: 
             embed.description = f"notifications have been turned **on**"
         else: 

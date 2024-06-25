@@ -12,6 +12,20 @@ class EconomyCommands(commands.Cog):
     def __init__(self, bot):
         self.bot: ForeignBot = bot
 
+    async def cog_before_invoke(self, ctx: commands.Context) -> None:
+        if not await self.bot.check_user_exists(ctx.author.id):
+            await self.bot.create_user_table(ctx.author.id)
+        elif not await self.bot.check_inventory_exists(ctx.author.id):
+            await self.bot.create_user_inventory(ctx.author.id)
+
+        return await super().cog_before_invoke(ctx)
+    
+    def fetch_user_inventory(self, user_id: int) -> tuple:
+        with open("./db/user_inventories.json", "r") as file:
+            data = json.load(file)
+        
+        return data.get(f"{user_id}")["inventory"], data.get(f"{user_id}")["achievements"]
+
     @commands.command(
         aliases=[
             "bal",
@@ -24,11 +38,6 @@ class EconomyCommands(commands.Cog):
             user = ctx.author
         elif user.bot:
             return await ctx.send("dude r u stupid? bots r too rich for banks lmao")
-
-        # used for those off-chances where a user has not talked once since they joined the server while foreignbot was online or invited
-        # creates a new user if it doesn't exist in the database
-        if not await self.bot.check_user_exists(user.id):
-            await self.bot.create_user_table(user.id)
 
         bal = await self.bot.db.fetchone(
             "SELECT balance FROM users WHERE user_id = ?", (user.id,)
@@ -60,9 +69,6 @@ class EconomyCommands(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def beg(self, ctx: commands.Context) -> None:
-        if not await self.bot.check_user_exists(ctx.author.id):
-            await self.bot.create_user_table(ctx.author.id)
-
         faker = Faker()
         accepted_responses = ["oh you poor thing", "sure lol", "here, take my money", "yea i gotchu", "no problem"]
         denied_responses = ["lol no", "what a waste of FC$", "no????", "nah, not today", "man fuck you and your dog ass", "stop begging"]
@@ -105,6 +111,7 @@ class EconomyCommands(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 21, commands.BucketType.guild)
     async def rob(self, ctx: commands.Context, user: typing.Optional[disnake.User] = None) -> None:
+        # this arg handling is so bad
         if user is None:
             return await ctx.send("who...who r u robbing?")
         elif user == self.bot.user:
@@ -116,8 +123,6 @@ class EconomyCommands(commands.Cog):
         
         if not await self.bot.check_user_exists(user.id):
             await self.bot.create_user_table(user.id)
-        elif not await self.bot.check_user_exists(ctx.author.id):
-            await self.bot.create_user_table(ctx.author.id)
 
         embed_failure = (
             disnake.Embed(
@@ -147,10 +152,7 @@ class EconomyCommands(commands.Cog):
         
         amount = round(target_bal / (random.randint(1, 25) % target_bal))
         
-        with open("./db/user_inventories.json", "r") as file:
-            user_data = json.load(file)
-        
-        if user_data[str(user.id)]["inventory"]["items"]["scary_mask"] == 1:
+        if self.fetch_user_inventory(user.id)[0]["items"].get("scary_mask"):
             chance = random.randint(0, 10)
         else:
             chance = random.randint(0, 5)
@@ -184,16 +186,12 @@ class EconomyCommands(commands.Cog):
 
     @commands.command()
     async def shop(self, ctx: commands.Context, option: typing.Optional[str] = None, item: str = None, amount: int = 1) -> None:
-        result = await self.bot.db.fetchone(
-            "SELECT prefix FROM guilds WHERE guild_id = ?", (ctx.guild.id,)
-        )
+        with open("./resources/shop.json", "r") as file:
+            shop_data = json.load(file)
 
         if option is None:
-            return await ctx.send(f"bro that command needs more arguments..\n```{result[0]}shop <info/buy/list> <item> <amount>```")
+            return await ctx.send(f"bro that command needs more arguments..\n```{await self.bot.find_prefix(ctx.guild.id)}shop <info/buy/list> <item> <amount>```")
         elif option.lower() == "list":
-            with open("./resources/shop.json", "r") as file:
-                shop_data = json.load(file)
-
             embed = (
                 disnake.Embed(
                     colour=disnake.Colour.og_blurple(),
@@ -212,45 +210,38 @@ class EconomyCommands(commands.Cog):
             await ctx.send(embed=embed)
 
         elif option.lower() == "buy":
-            with open("./resources/shop.json", "r") as file:
-                shop_data = json.load(file)
-
             if item is None:
                 return await ctx.reply(f"haha im gonna buy nothing its gonna b so funny\n```available items: {', '.join(shop_data['shop']['items'].keys())}```")
 
             if item not in shop_data["shop"]["items"]:
                 return await ctx.send(f"that item does not exist\n```available items: {', '.join(shop_data['shop']['items'].keys())}```")
             
-            if not await self.bot.check_user_exists(ctx.author.id):
-                await self.bot.create_user_table(ctx.author.id)
-            if not await self.bot.check_inventory_exists(ctx.author.id):
-                await self.bot.create_user_inventory(ctx.author.id)
-            
             bal = await self.bot.db.fetchone(
                 "SELECT balance FROM users WHERE user_id = ?", (ctx.author.id,)
             )
             bal = bal[0]
+            price = (shop_data["shop"]["items"][item]["price"] * amount)
 
-            if (shop_data["shop"]["items"][item]["price"]*amount) > bal:
-                return await ctx.send("u cant afford that item")
+            if price > bal:
+                return await ctx.send("ur broke ass cant afford that item")
             
             await self.bot.db.update(
-                "UPDATE users SET balance = balance - ? WHERE user_id = ?", ((shop_data["shop"]["items"][item]["price"]*amount), ctx.author.id)
+                "UPDATE users SET balance = balance - ? WHERE user_id = ?", (price, ctx.author.id)
             )
 
-            with open("./db/user_inventories.json", "r") as file:
-                user_data = json.load(file)
+            user_data = self.fetch_user_inventory(ctx.author.id)[0]
+            user_achv = self.fetch_user_inventory(ctx.author.id)[1]
 
-            if user_data.get(str(ctx.author.id))["inventory"]["items"].get(item) is None:
-                user_data[str(ctx.author.id)]["inventory"]["items"][item] = amount
-            else: user_data[str(ctx.author.id)]["inventory"]["items"][item] += amount
+            if user_data["items"].get(item) is None:
+                user_data["items"][item] = amount
+            else: user_data["items"][item] += amount
 
             notifications = await self.bot.db.fetchone(
                 "SELECT notis FROM users WHERE user_id = ?", (ctx.author.id,))
             notifications = bool(notifications[0])
 
-            if user_data.get(str(ctx.author.id))["inventory"]["items"].get("scary_mask") is not None and user_data.get(str(ctx.author.id))["inventory"]["items"].get("scary_mask")>= 25 and not user_data.get(str(ctx.author.id))["achievements"].get("achievement_mentlegen"):
-                user_data[str(ctx.author.id)]["achievements"]["achievement_mentlegen"] = True
+            if user_data["items"].get("scary_mask") is not None and user_data["items"].get("scary_mask") >= 25 and not user_achv.get("achievement_mentlegen"):
+                user_achv["achievement_mentlegen"] = True
 
                 with open("./resources/achievements.json", "r") as file:
                     achievements = json.load(file)
@@ -272,8 +263,8 @@ class EconomyCommands(commands.Cog):
                     "UPDATE users SET balance = balance + ? WHERE user_id = ?", (int(achievements["achievements"]["achievement_mentlegen"]["reward"]), ctx.author.id)
                 )
 
-            elif user_data.get(str(ctx.author.id))["inventory"]["items"].get("inf_money_glitch") is not None and user_data.get(str(ctx.author.id))["inventory"]["items"].get("inf_money_glitch") >= 1 and not user_data.get(str(ctx.author.id))["achievements"].get("achievement_were_rich"):
-                user_data[str(ctx.author.id)]["achievements"]["achievement_were_rich"] = True
+            elif user_data["items"].get("inf_money_glitch") is not None and user_data["items"].get("inf_money_glitch") >= 1 and not user_achv.get("achievement_were_rich"):
+                user_achv["achievement_were_rich"] = True
 
                 with open("./resources/achievements.json", "r") as file:
                     achievements = json.load(file)
