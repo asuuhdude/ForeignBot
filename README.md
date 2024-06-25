@@ -26,7 +26,7 @@ A multi-purpose Discord bot written in Python using [Disnake](https://github.com
 This stage of development is rocky! During this stage I'm mainly focused on seeing what sticks and what doesn't. **That means there will be no official public instance of ForeignBot yet.**
 
 <br />
-Optimization and efficiency is my second priority during this time, if you find bugs or propose a better method to my madness, please open an [issue].
+Optimization and efficiency is my second priority during this time, if you find bugs or propose a better method to my madness, please open an [issue](#reporting-an-issuevulnerability).
 
 Keep in mind the source code during this time will look chaotic, as updates go along and new features are added the source code will be more and more presentable.
 
@@ -53,3 +53,15 @@ Order is not important, but anything **bolded** is considered a higher priority.
     - *Remove the achievement system?*
   - **Add the entire gimmick of this Discord bot, customization.**
   - The ability to actually use items, only item with any current ability is the Scary Mask.
+  - **Add an actual help command.**
+
+# Reporting an Issue/Vulnerability
+
+> [!NOTE]
+> For contributing see "[Contributing](#contributing)"
+
+TODO
+
+# Contributing
+
+TODO
