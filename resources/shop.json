@@ -1,0 +1,47 @@
+{
+    "shop": {
+
+        "items": {
+
+            "russian_roulette": {
+                "displayName": "Russian Roulette",
+                "price": 1000,
+                "description": "A game of chance. 50% chance of winning and doubling your held money, 50% chance of losing and losing all your money.",
+                "icon": "<:shico_russian_roulette:1254950050430189658>"
+            },
+            "vat_of_urine": {
+                "displayName": "VAT of Urine",
+                "price": 250,
+                "description": "So this is what DOOM meant..",
+                "icon": "<:shico_vat_of_urine:1254972529026666576>"
+            },
+            "scary_mask": {
+                "displayName": "Scary Mask",
+                "price": 25000,
+                "description": "It's scary, right? Lowers your chance of being robbed, does not stack. (Passive Item)",
+                "icon": "<:shico_scary_mask:1254976242839715913>"
+            },
+            "golden_pan": {
+                "displayName": "Golden Pan",
+                "price": 999999999,
+                "description": "A legendary item, if bought guarantees buyer bragging rights.",
+                "icon": "<:shico_golden_pan:1254950032738877601>"
+            },
+            "inf_money_glitch": {
+                "displayName": "Infinite Money Glitch",
+                "price": 999999999999999999,
+                "description": "devs forgot to patch this LOL, 100% working 2007",
+                "icon": "<:shico_infinite_money_glitch:1254950041244930108>"
+            }
+        }
+    },
+
+    "hidden_items": {
+
+        "hiden_codex": {
+            "displayName": "Hidden Codex",
+            "description": "I like what this book is whispering to me.",
+            "icon": "<:shico_hidden_codex:1254998638782844999>"
+        }
+    }
+}

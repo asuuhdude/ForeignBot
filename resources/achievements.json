@@ -1,0 +1,26 @@
+{
+    "achievements": {
+
+        "achievement_mentlegen": {
+            "displayName": "Mentlegen.",
+            "display": "https://cdn.discordapp.com/attachments/1046997746722295810/1254982188731072553/shico_scary_mask_achievement.png?ex=667b78be&is=667a273e&hm=289a33dad9156b5b8b3d96bd622010903e1e7d3e0adadda7c8d880131fcdc38a&",
+            "description": "Buy 25 Scary Masks in the shop.",
+            "rewardType": "currency",
+            "reward": 700000
+        },
+        "achievement_were_rich": {
+            "displayName": "We're Rich!",
+            "display": "https://cdn.discordapp.com/attachments/1046997746722295810/1254985081244618812/shico_infinite_money_glitch_achievement.png?ex=667b7b6f&is=667a29ef&hm=1bdb6c5adacf12db94a7ea9e92929ef25db7d0f627eeb6b4a589fc0da6946e0b&",
+            "description": "Buy the Infinite Money Glitch in the shop.",
+            "rewardType": "hiddenItem",
+            "reward": "hidden_codex"
+        },
+        "achievement_all": {
+            "displayName": "Bring Home the Bacon",
+            "display": "https://cdn.discordapp.com/attachments/1046997746722295810/1255015418138071060/shico_lifetime_achievement.png?ex=667b97b0&is=667a4630&hm=9babe008bd03da6e7855d88c585153c2560729394a57963a2eb03eff62e31b04&",
+            "description": "Complete ALL achievements.",
+            "rewardType": "currency",
+            "reward": 100000000000
+        }
+    }
+}

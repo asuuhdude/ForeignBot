@@ -1,0 +1,4 @@
+*.db
+user_inventories.json
+__pycache__/
+.env
