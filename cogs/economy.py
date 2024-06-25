@@ -282,7 +282,7 @@ class EconomyCommands(commands.Cog):
 
                 if notifications == True:
                     await ctx.send(embed=embed)
-                user_data[str(ctx.author.id)]["inventory"]["items"]["hidden_codex"] = 1
+                user_data["items"]["hidden_codex"] = 1
 
             with open("./db/user_inventories.json", "w") as file:
                 user_data = json.dump(user_data, file)
