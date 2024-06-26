@@ -99,6 +99,8 @@ Order is not important, but anything **bolded** is considered a higher priority.
   - **Add the entire gimmick of this Discord bot, customization.**
   - The ability to actually use items, only item with any current ability is the Scary Mask.
   - **Add an actual help command.**
+  - **Upgrade to Python version 3.11 (perferrably before we reach an Alpha phase), since 3.9 will be reaching EoS in 2025.**
+    - *Anything higher than 3.9 should be fine, but 3.11 has a lot of perferrable features.*
 
 # Reporting an Issue/Vulnerability
 
