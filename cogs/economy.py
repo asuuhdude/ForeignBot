@@ -20,11 +20,11 @@ class EconomyCommands(commands.Cog):
 
         return await super().cog_before_invoke(ctx)
     
-    def fetch_user_inventory(self, user_id: int) -> tuple:
+    async def fetch_user_inventory(self, user_id: int) -> tuple:
         with open("./db/user_inventories.json", "r") as file:
             data = json.load(file)
         
-        return data.get(f"{user_id}")["inventory"], data.get(f"{user_id}")["achievements"]
+        return (data.get(f"{user_id}").get("inventory"), data.get(f"{user_id}").get("achievements"))
 
     @commands.command(
         aliases=[
@@ -152,7 +152,7 @@ class EconomyCommands(commands.Cog):
         
         amount = round(target_bal / (random.randint(1, 25) % target_bal))
         
-        if self.fetch_user_inventory(user.id)[0]["items"].get("scary_mask"):
+        if await self.fetch_user_inventory(user.id)[0]["items"].get("scary_mask"):
             chance = random.randint(0, 10)
         else:
             chance = random.randint(0, 5)
@@ -222,6 +222,9 @@ class EconomyCommands(commands.Cog):
             bal = bal[0]
             price = (shop_data["shop"]["items"][item]["price"] * amount)
 
+            with open("./db/user_inventories.json", "r") as file:
+                commit_data = json.load(file)
+
             if price > bal:
                 return await ctx.send("ur broke ass cant afford that item")
             
@@ -229,19 +232,22 @@ class EconomyCommands(commands.Cog):
                 "UPDATE users SET balance = balance - ? WHERE user_id = ?", (price, ctx.author.id)
             )
 
-            user_data = self.fetch_user_inventory(ctx.author.id)[0]
-            user_achv = self.fetch_user_inventory(ctx.author.id)[1]
+            user_data, user_achv = await self.fetch_user_inventory(ctx.author.id)
 
             if user_data["items"].get(item) is None:
-                user_data["items"][item] = amount
-            else: user_data["items"][item] += amount
+                commit_data[f"{ctx.author.id}"]["inventory"]["items"][item] = amount
+            else: commit_data[f"{ctx.author.id}"]["inventory"]["items"][item] += amount
 
             notifications = await self.bot.db.fetchone(
                 "SELECT notis FROM users WHERE user_id = ?", (ctx.author.id,))
             notifications = bool(notifications[0])
 
+            with open("./db/user_inventories.json", "w") as file:
+                user_data = json.dump(commit_data, file)
+            user_data, user_achv = await self.fetch_user_inventory(ctx.author.id)
+
             if user_data["items"].get("scary_mask") is not None and user_data["items"].get("scary_mask") >= 25 and not user_achv.get("achievement_mentlegen"):
-                user_achv["achievement_mentlegen"] = True
+                commit_data[f"{ctx.author.id}"]["achievements"]["achievement_mentlegen"] = True
 
                 with open("./resources/achievements.json", "r") as file:
                     achievements = json.load(file)
@@ -264,7 +270,7 @@ class EconomyCommands(commands.Cog):
                 )
 
             elif user_data["items"].get("inf_money_glitch") is not None and user_data["items"].get("inf_money_glitch") >= 1 and not user_achv.get("achievement_were_rich"):
-                user_achv["achievement_were_rich"] = True
+                commit_data[f"{ctx.author.id}"]["achievements"]["achievement_were_rich"] = True
 
                 with open("./resources/achievements.json", "r") as file:
                     achievements = json.load(file)
@@ -282,10 +288,10 @@ class EconomyCommands(commands.Cog):
 
                 if notifications == True:
                     await ctx.send(embed=embed)
-                user_data["items"]["hidden_codex"] = 1
+                commit_data[f"{ctx.author.id}"]["inventory"]["items"]["hidden_codex"] = 1
 
             with open("./db/user_inventories.json", "w") as file:
-                user_data = json.dump(user_data, file)
+                user_data = json.dump(commit_data, file)
                 file.close()
 
             embed = (
