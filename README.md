@@ -13,7 +13,7 @@
 A multi-purpose Discord bot written in Python using [Disnake](https://github.com/DisnakeDev/disnake) with the aim to be heavily customizable*
 >*Not fully implemented yet *(ironic)*, read "[Project Plans](#project-plans)" or "[todo.md](./todo.md)"
 
-*This bot is NOT PG, there's no profanity filter yet so cover your children's eyes.*
+*This bot is NOT PG, there's no functional profanity filter yet so cover your children's eyes.*
 
 <br />
 
@@ -49,6 +49,7 @@ Here's a list of all the libraries needed to run the source code:
  - aiohttp
  - aiosqlite
  - Faker
+ - toml
 
 ### Add the Necessary Files
 

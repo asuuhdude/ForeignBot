@@ -12,6 +12,12 @@ class UtilityCommands(commands.Cog):
     def __init__(self, bot):
         self.bot: ForeignBot = bot
 
+    async def fetch_user_inventory(self, user_id: int) -> tuple:
+        with open("./db/user_inventories.json", "r") as file:
+            data = json.load(file)
+        
+        return (data.get(f"{user_id}").get("inventory"), data.get(f"{user_id}").get("achievements"))
+
     @commands.command()
     async def prefix(self, ctx: commands.Context) -> None:
         embed = (
@@ -77,6 +83,25 @@ class UtilityCommands(commands.Cog):
             "UPDATE users SET notis = ? WHERE user_id = ?", (value, ctx.author.id)
         )
 
+
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def credits(self, ctx: commands.Context):
+        embed = (
+            disnake.Embed(
+                colour=disnake.Colour.og_blurple(),
+                title="ForeignBot Credits",
+                description="[Repository](https://github.com/asuuhdude/ForeignBot)"
+            )
+
+            .set_thumbnail(url=self.bot.user.display_avatar.url)
+            .set_image(url="https://cdn.discordapp.com/attachments/1046997746722295810/1255195598462783629/text.png?ex=667ee27f&is=667d90ff&hm=fc592e28e5ff5f98536b031b405f74678a7173d3f9002f325d8282d9de279635&")
+            .set_footer(text=VERSION, icon_url=ctx.author.display_avatar.url)
+
+            .add_field(name="Code Developer", value="- [asuuhdude](https://github.com/asuuhdude)")
+            .add_field(name="Extra", value="- [CaedenPH](https://github.com/CaedenPH)\n- [JesterBot](https://github.com/CaedenPH/JesterBot) Contributors")
+        )
 
         await ctx.send(embed=embed)
 

@@ -1,0 +1,80 @@
+[core]
+
+profanityFilter = false
+achievementsEnabled = true
+
+
+[core.commands.economy]
+
+disableEntirely = false
+disabledCommands = []
+
+
+[core.commands.fun]
+
+disableEntirely = false
+disabledCommands = []
+
+
+[core.commands.ultility]
+
+disableEntirely = false
+disabledCommands = []
+
+
+[core.activities.normal]
+
+list = [
+    "with ur mom",
+    "with ur dad",
+    "with ur precious bank account",
+    "with disnake",
+    "with my bands",
+
+    "fuck javascript, all my homies hate javascript",
+    "the only way to be cool is to be normal",
+    "the hate is getting to me..",
+    "getting 𝓯𝓻𝓮𝓪𝓴𝔂",
+    "u guys wanna go band for band",
+    "going 𝓯𝓻𝓮𝓪𝓴𝔂 mode",
+    "cant stop thinking about that airport jungle juice",
+    "sometimes a gangsta need a hug too",
+    "hey guys watch this im gonna reset the database",
+
+    "Cyberpunk 2077",
+    "Discord",
+    "Minecraft",
+    "Fortnite",
+    "Team Fortress 2",
+    "Stardew Valley",
+    "Risk of Rain 2",
+    "Terraria",
+    "Half-Life 2",
+    "Counter-Strike 2"
+]
+
+[core.activities.holiday]
+
+list_festive = [
+    "with santa claus",
+    "with mrs claus iykyk",
+    
+    "are u guys going christmas caroling",
+    "proud santa believer",
+    "i cant stop thinking about that christmas tree",
+    "diagnosis: naughty list",
+    "get jolly with it",
+    "IM OUT FOR PRESENTS",
+
+    "Santa Claus Simulator",
+    "Jolly Simulator"
+]
+list_spooky = [
+    "with ur grandma",
+    "with skellingtons",
+
+    "are u guys going trick or treating",
+    "𝓯𝓻𝓮𝓪𝓴𝔂 skellingtons",
+    
+    "Trick or Treating"
+]

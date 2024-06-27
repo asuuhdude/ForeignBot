@@ -8,6 +8,8 @@ import sys, os
 import datetime
 import asyncio
 import json
+import toml
+import random
 
 import colorama
 import aiohttp
@@ -191,12 +193,18 @@ class ForeignBot(Bot):
     async def log_data_pre(self) -> None:
         await self.wait_until_ready()
 
+    def load_presence_list(self) -> List:
+        file = toml.load(f="./config.toml")
+        activities = [activity for activity in file["core"]["activities"]["normal"]["list"]]
+
+        return activities
+
     @loop(seconds=540)
     async def update_presence(self) -> None:
         await self.change_presence(
             activity=Activity(
                 type=ActivityType.playing,
-                name = "im in early prototyping so database stuff will get reset iykyk"
+                name = random.choice(self.load_presence_list())
             )
         )
 

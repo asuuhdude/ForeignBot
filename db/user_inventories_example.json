@@ -1,0 +1,19 @@
+// THIS IS AN EXAMPLE OF user_inventories.json 
+// THIS IS NOT MEANT TO BE USED AS A FUNCTIONAL FILE
+
+{
+    "1": { // User ID
+        "inventory": {
+
+            "items": { // Items, will only be items from shop.json, format: "item_key": amount in inventory
+                "scary_mask": 25,
+                "infinite_money_glitch": 4,
+                "russian_roulette": 34
+            }
+        },
+
+        "achievements": { // Achievements, will only be achievements from achievements.json, format: "achievement_key": true
+            "achievement_mentlegen": true
+        }
+    }
+}
