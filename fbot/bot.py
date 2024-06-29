@@ -155,21 +155,39 @@ class ForeignBot(Bot):
         prefix = await self.find_prefix(message.guild.id)
         return when_mentioned_or(prefix)(self, message)
     
+    def load_config(self) -> None:
+        with open("./config.toml", "r", encoding="utf8") as file:
+            self.config = toml.load(file)
+
+    def cog_is_enabled(self, cog: str) -> bool:
+        return self.config["core"]["commands"][cog].get("disableEntirely")
+    
     async def process_commands(self, message: Message) -> None:
         ctx = await self.get_context(message=message, cls=Context)
         await self.invoke(ctx)
     
     def setup(self) -> None:
 
+        print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} loading config.toml..")
+
+        self.load_config()
+
         print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} loading {self.COGS}")
+        loaded = []
 
         for file in self.COGS:
-            if file.endswith("py"):
-                self.load_extension(f"{file[:-3]}")
+            if self.cog_is_enabled(f"{file[:-3][5:]}"):
+                print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} disabled {file}")
             else:
-                self.load_extension(file)
 
-        print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} loaded {f.YELLOW}{len(self.COGS)}{f.WHITE} cog(s)")
+                if file.endswith("py"):
+                    self.load_extension(f"{file[:-3]}")
+                else:
+                    self.load_extension(file)
+
+                loaded.append(file)
+
+        print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} loaded {f.YELLOW}{len(loaded)}{f.WHITE} cog(s)")
 
     @loop(seconds=600)
     async def log_data_into_db(self) -> None:
@@ -193,18 +211,12 @@ class ForeignBot(Bot):
     async def log_data_pre(self) -> None:
         await self.wait_until_ready()
 
-    def load_presence_list(self) -> List:
-        file = toml.load(f="./config.toml")
-        activities = [activity for activity in file["core"]["activities"]["normal"]["list"]]
-
-        return activities
-
     @loop(seconds=540)
     async def update_presence(self) -> None:
         await self.change_presence(
             activity=Activity(
                 type=ActivityType.playing,
-                name = random.choice(self.load_presence_list())
+                name = random.choice(self.config["core"]["activities"]["normal"]["list"])
             )
         )
 

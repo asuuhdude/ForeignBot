@@ -7,10 +7,18 @@ from disnake.ext.commands import has_permissions
 from fbot import ForeignBot
 from fbot.vars import VERSION
 
+from pathlib import Path
+
 class UtilityCommands(commands.Cog):
 
     def __init__(self, bot):
         self.bot: ForeignBot = bot
+
+    async def cog_before_invoke(self, ctx: commands.Context) -> None:
+        if ctx.command.name in self.bot.config["core"]["commands"][Path(__file__).stem]["disabledCommands"]:
+            raise commands.CommandInvokeError("command is disabled")
+
+        return await super().cog_before_invoke(ctx)
 
     async def fetch_user_inventory(self, user_id: int) -> tuple:
         with open("./db/user_inventories.json", "r") as file:

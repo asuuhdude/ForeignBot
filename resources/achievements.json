@@ -20,7 +20,21 @@
             "display": "https://cdn.discordapp.com/attachments/1046997746722295810/1255015418138071060/shico_lifetime_achievement.png?ex=667b97b0&is=667a4630&hm=9babe008bd03da6e7855d88c585153c2560729394a57963a2eb03eff62e31b04&",
             "description": "Complete ALL achievements.",
             "rewardType": "currency",
-            "reward": 100000000000
+            "reward": 1000000000
+        },
+        "achievement_achievement": {
+            "displayName": "achievementName",
+            "display": "https://cdn.discordapp.com/attachments/1046997746722295810/1256337062563549277/shico_locked.png?ex=66806691&is=667f1511&hm=3d75930a580e257fc1fc7be5b525f478f1fcf4c08cb3751e93da93a657b271d5&",
+            "description": "achievementDescription",
+            "rewardType": "hiddenItem",
+            "reward": "item"
+        },
+        "achievement_heist": {
+            "displayName": "Professionals Have Standards",
+            "display": "https://cdn.discordapp.com/attachments/1046997746722295810/1256340565214232666/shico_heist_achievement.png?ex=668069d4&is=667f1854&hm=ac773cd3bc7f86adc47b3aca1236b6be0713052d222da10e96f44a13b56c099d&",
+            "description": "Get over 2,000,000 FC$ in a single heist.",
+            "rewardType": "currency",
+            "reward": 500000
         }
     }
 }

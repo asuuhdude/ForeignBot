@@ -7,6 +7,8 @@ from disnake.ext import commands
 from fbot import ForeignBot
 from faker import Faker
 
+from pathlib import Path
+
 class EconomyCommands(commands.Cog):
 
     def __init__(self, bot):
@@ -17,6 +19,9 @@ class EconomyCommands(commands.Cog):
             await self.bot.create_user_table(ctx.author.id)
         elif not await self.bot.check_inventory_exists(ctx.author.id):
             await self.bot.create_user_inventory(ctx.author.id)
+
+        if ctx.command.name in self.bot.config["core"]["commands"][Path(__file__).stem]["disabledCommands"]:
+            raise commands.CommandInvokeError("command is disabled")
 
         return await super().cog_before_invoke(ctx)
     
@@ -302,6 +307,16 @@ class EconomyCommands(commands.Cog):
             )
 
             await ctx.send(embed=embed)
+
+    @commands.command()
+    async def heist(self, ctx: commands.Context, user: typing.Optional[disnake.User] = None) -> None:
+        if user is None:
+            return await ctx.reply("who r we heisting?")
+        elif user.id == ctx.author.id:
+            return await ctx.reply("u cant heist urself lmao")
+        elif user.bot:
+            return await ctx.send("bro bots have super extra secure antivirus installed, they cant b heisted..")
+
 
 
 def setup(bot):

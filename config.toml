@@ -1,8 +1,17 @@
 [core]
 
+# General Settings
+
+# 
+# profanityFilter: true / false 
+#   true: enable profanity filter (affects the bot's commands and responses, not the users)
+#   false: disable profanity filter
+#
+# achievementsEnabled: true / false
+#   true: enable achievements
+#   false: disable achievements
 profanityFilter = false
 achievementsEnabled = true
-
 
 [core.commands.economy]
 
@@ -16,12 +25,19 @@ disableEntirely = false
 disabledCommands = []
 
 
-[core.commands.ultility]
+[core.commands.utility]
+
+disableEntirely = false
+disabledCommands = []
+
+[core.commands.help]
 
 disableEntirely = false
 disabledCommands = []
 
 
+# Activity Settings
+# formats as "Playing {ACTIVITY-NAME}"
 [core.activities.normal]
 
 list = [

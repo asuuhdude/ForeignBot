@@ -6,10 +6,16 @@ import io
 from disnake.ext import commands
 from fbot import ForeignBot
 
+from pathlib import Path
+
 class FunCommands(commands.Cog):
 
     def __init__(self, bot):
         self.bot: ForeignBot = bot
+
+    async def cog_before_invoke(self, ctx: commands.Context) -> None:
+        if ctx.command.name in self.bot.config["core"]["commands"][Path(__file__).stem]["disabledCommands"]:
+            raise commands.CommandInvokeError("command is disabled")
 
     @commands.command(
         aliases=[

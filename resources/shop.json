@@ -7,31 +7,36 @@
                 "displayName": "Russian Roulette",
                 "price": 1000,
                 "description": "A game of chance. 50% chance of winning and doubling your held money, 50% chance of losing and losing all your money.",
-                "icon": "<:shico_russian_roulette:1254950050430189658>"
+                "icon": "<:shico_russian_roulette:1254950050430189658>",
+                "extraInfo": "Added in version 1.0.1v2-prototype"
             },
             "vat_of_urine": {
                 "displayName": "VAT of Urine",
                 "price": 250,
                 "description": "So this is what DOOM meant..",
-                "icon": "<:shico_vat_of_urine:1254972529026666576>"
+                "icon": "<:shico_vat_of_urine:1254972529026666576>",
+                "extraInfo": "..behold y'all, the digital VATs of urine. Added in version 1.0.1v2-prototype"
             },
             "scary_mask": {
                 "displayName": "Scary Mask",
                 "price": 25000,
-                "description": "It's scary, right? Lowers your chance of being robbed, does not stack. (Passive Item)",
-                "icon": "<:shico_scary_mask:1254976242839715913>"
+                "description": "It's scary, right? Lowers your chance of being robbed, does not stack.",
+                "icon": "<:shico_scary_mask:1254976242839715913>",
+                "extraInfo": "Passive Item, does not stop heists. Added in version 1.0.1v2-prototype"
             },
             "golden_pan": {
                 "displayName": "Golden Pan",
                 "price": 999999999,
                 "description": "A legendary item, if bought guarantees buyer bragging rights.",
-                "icon": "<:shico_golden_pan:1254950032738877601>"
+                "icon": "<:shico_golden_pan:1254950032738877601>",
+                "extraInfo": "Added in version 1.0.1v2-prototype"
             },
             "inf_money_glitch": {
                 "displayName": "Infinite Money Glitch",
                 "price": 999999999999999999,
                 "description": "devs forgot to patch this LOL, 100% working 2007",
-                "icon": "<:shico_infinite_money_glitch:1254950041244930108>"
+                "icon": "<:shico_infinite_money_glitch:1254950041244930108>",
+                "extraInfo": "trust, bro, this works. Added in version 1.0.1v2-prototype"
             }
         }
     },
@@ -41,7 +46,20 @@
         "hiden_codex": {
             "displayName": "Hidden Codex",
             "description": "I like what this book is whispering to me.",
-            "icon": "<:shico_hidden_codex:1254998638782844999>"
+            "icon": "<:shico_hidden_codex:1254998638782844999>",
+            "extraInfo": "Added in version 1.0.1v2-prototype"
+        },
+        "scary_mask_special": {
+            "displayName": "Scary Mask",
+            "description": "Mask up folks.",
+            "icon": "<:shico_scary_mask_special:1256025466259636325>",
+            "extraInfo": "Reskin of the Scary Mask. Added in version 1.0.1v2-prototype"
+        },
+        "item": {
+            "displayName": "itemDisplayName",
+            "description": "itemDescription",
+            "icon": "<:shico_item:1256338775043473458>",
+            "extraInfo": ""
         }
     }
 }

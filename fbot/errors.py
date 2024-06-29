@@ -93,6 +93,8 @@ async def error_handler(ctx: Context, error: Exception) -> None:
             "Command raised an exception: Forbidden: 403 Forbidden (error code: 50013): Missing Permissions"
         ):
             await ctx.reply("im not allowed to do that, i wasnt invited with the proper permissions")
+        elif (error.args[0] == "Command raised an exception: str: command is disabled"):
+            return
         else:
             await unexpected(ctx, error)
     else:
