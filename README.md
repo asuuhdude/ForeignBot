@@ -1,8 +1,8 @@
 # ForeignBot V2
 
 <p float="left">
-    <img src="https://cdn.discordapp.com/attachments/1046997746722295810/1255193089929117716/icon.png?ex=667c3d28&is=667aeba8&hm=af3bfbec8d5baab94b978d37627b9d9202bf49ca48f03067626b839639a72f42&">
-    <img src="https://cdn.discordapp.com/attachments/1046997746722295810/1255195598462783629/text.png?ex=667c3f7f&is=667aedff&hm=ee0b8236a413df1db229d12a0122d7c6443a7c7754c349161d4f9685162fe261&">
+    <img src="./resources/icon.png">
+    <img src="./resources/text.png">
 </p>
 
 ![Static Programming Language Badge](https://img.shields.io/badge/lang-Python%203.9.11-blue)
@@ -108,8 +108,14 @@ Order is not important, but anything **bolded** is considered a higher priority.
 > [!NOTE]
 > For contributing see "[Contributing](#contributing)"
 
-TODO
+If you've found a bug, or something that is comprising the integrity of security of the project, please open an [issue](https://github.com/asuuhdude/ForeignBot/issues). I will try to resolve your issue as soon as possible.
+<br />
+
+I'm not too heavy on using labels on issues, but if you know what you're doing and want to help the issue-resolving-process be more efficient, then please attach an appropriate label.
+<br />
+
+**BUT PLEASE make your issue coherent and relevant, if it doesn't fall within those two categories it will be marked as https://github.com/asuuhdude/ForeignBot/labels/invalid or https://github.com/asuuhdude/ForeignBot/labels/wontfix.**
 
 # Contributing
 
-TODO
+If you'd like to contribute to the project, you're welcome to do so! Before you do submit a pull request, please make an issue about the feature you'd like to add. There's no garuantee that your pull request will be accepted, but I still love seeing your interest and work!
