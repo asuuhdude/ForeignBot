@@ -1,24 +1,24 @@
-import asyncio
+# import asyncio
 import traceback
 import disnake
-import json
+# import json
 import random
 
 from disnake.ext.commands import (
-    BadArgument,
+    #BadArgument,
     CheckFailure,
     CommandInvokeError,
     CommandNotFound,
     CommandOnCooldown,
-    MemberNotFound,
+    #MemberNotFound,
     MissingPermissions,
-    MissingRequiredArgument,
-    RoleNotFound,
+    #MissingRequiredArgument,
+    #RoleNotFound,
 
     Context
 )
 
-from datetime import datetime, timezone
+#from datetime import datetime, timezone
 from .vars import VERSION
 
 async def unexpected(ctx: Context, error: Exception) -> None:

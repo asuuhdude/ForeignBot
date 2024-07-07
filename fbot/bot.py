@@ -4,9 +4,8 @@
 
 from __future__ import annotations
 
-import sys, os
+import os
 import datetime
-import asyncio
 import json
 import toml
 import random
@@ -23,13 +22,12 @@ from disnake import (
     __version__,
 )
 
-from disnake.ext.commands import Bot, when_mentioned_or, Context, check
+from disnake.ext.commands import Bot, when_mentioned_or, Context
 from disnake.ext.tasks import loop
 from colorama import Fore as f
-from typing import List
 
 from .db import ForeignBotDB
-from .vars import *
+from .vars import VERSION, BOT_TOKEN
 from .errors import error_handler
 
 
@@ -176,15 +174,18 @@ class ForeignBot(Bot):
         loaded = []
 
         for file in self.COGS:
-            if self.cog_is_enabled(f"{file[:-3][5:]}"):
-                print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} disabled {file}")
-            else:
-
-                if file.endswith("py"):
-                    self.load_extension(f"{file[:-3]}")
+            if file.endswith("py"):
+                if self.cog_is_enabled(f"{file[:-3][5:]}"):
+                    print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} disabled {file}")
                 else:
-                    self.load_extension(file)
+                    self.load_extension(f"{file[:-3]}")
+                    loaded.append(file)
 
+            elif self.cog_is_enabled(f"{file[5:]}"):
+                print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} disabled {file}")
+
+            else:
+                self.load_extension(file)
                 loaded.append(file)
 
         print(f"{f.YELLOW}(bot.py) ForeignBot.setup : {f.WHITE} loaded {f.YELLOW}{len(loaded)}{f.WHITE} cog(s)")

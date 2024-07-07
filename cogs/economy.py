@@ -61,7 +61,7 @@ class EconomyCommands(commands.Cog):
             )
 
             .set_author(name=f"{user.name}'s balance 💸", icon_url=user.display_avatar.url)
-            .set_footer(text=f"powered by ur crippling dept", icon_url=ctx.author.display_avatar.url)
+            .set_footer(text="powered by ur crippling dept", icon_url=ctx.author.display_avatar.url)
         )
 
         if bal < 1 and bank < 1000:
@@ -109,7 +109,7 @@ class EconomyCommands(commands.Cog):
             embed1.description = random.choice(denied_responses)
             embed1.colour = disnake.Colour.red()
 
-            embed2.description = f":money_with_wings: you begged and got nothing smh"
+            embed2.description = ":money_with_wings: you begged and got nothing smh"
 
         await ctx.send(embeds=[embed1, embed2])
 
@@ -186,7 +186,7 @@ class EconomyCommands(commands.Cog):
                 "UPDATE users SET balance = balance - ? WHERE user_id = ?", (500, ctx.author.id)
             )
 
-            embed_failure.description = f":x: dude u had the bag and then u slipped up wth!!\n`lost 500 FC$`"
+            embed_failure.description = ":x: dude u had the bag and then u slipped up wth!!\n`lost 500 FC$`"
             await ctx.send(embed=embed_failure)
 
     @commands.command()
@@ -241,7 +241,8 @@ class EconomyCommands(commands.Cog):
 
             if user_data["items"].get(item) is None:
                 commit_data[f"{ctx.author.id}"]["inventory"]["items"][item] = amount
-            else: commit_data[f"{ctx.author.id}"]["inventory"]["items"][item] += amount
+            else: 
+                commit_data[f"{ctx.author.id}"]["inventory"]["items"][item] += amount
 
             notifications = await self.bot.db.fetchone(
                 "SELECT notis FROM users WHERE user_id = ?", (ctx.author.id,))
@@ -268,7 +269,7 @@ class EconomyCommands(commands.Cog):
                     .set_thumbnail(url=achievements["achievements"]["achievement_mentlegen"]["display"])
                 )
 
-                if notifications == True:
+                if notifications:
                     await ctx.send(embed=embed)
                 await self.bot.db.update(
                     "UPDATE users SET balance = balance + ? WHERE user_id = ?", (int(achievements["achievements"]["achievement_mentlegen"]["reward"]), ctx.author.id)
@@ -291,7 +292,7 @@ class EconomyCommands(commands.Cog):
                     .set_thumbnail(url=achievements["achievements"]["achievement_were_rich"]["display"])
                 )
 
-                if notifications == True:
+                if notifications:
                     await ctx.send(embed=embed)
                 commit_data[f"{ctx.author.id}"]["inventory"]["items"]["hidden_codex"] = 1
 

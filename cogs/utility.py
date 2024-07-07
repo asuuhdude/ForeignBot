@@ -83,9 +83,11 @@ class UtilityCommands(commands.Cog):
         )
 
         if value: 
-            embed.description = f"notifications have been turned **on**"
+            embed.description = "notifications have been turned **on**"
+            embed.set_footer(text="swag mode: activated | this affects all servers youre in with me")
         else: 
-            embed.description = f"notifications have been turned **off**"
+            embed.description = "notifications have been turned **off**"
+            embed.set_footer(text="literally 1984 | this affects all servers youre in with me")
 
         await self.bot.db.update(
             "UPDATE users SET notis = ? WHERE user_id = ?", (value, ctx.author.id)

@@ -1,8 +1,7 @@
-import disnake
-import typing
+# import disnake
+# import typing
 
 from disnake.ext import commands
-from disnake.ext.commands import has_permissions
 from fbot import ForeignBot
 
 from pathlib import Path

@@ -1,7 +1,6 @@
 import disnake
 import typing
 import random
-import io
 
 from disnake.ext import commands
 from fbot import ForeignBot
@@ -82,7 +81,7 @@ class FunCommands(commands.Cog):
             .set_author(name=f"how big is {user.display_name}? 🙊", icon_url=user.display_avatar.url)\
             .add_field(
                 name=f"**8{'='*meter}D**",
-                value=f""
+                value=""
             )
         )
 
