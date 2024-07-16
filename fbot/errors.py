@@ -12,14 +12,14 @@ from disnake.ext.commands import (
     CommandOnCooldown,
     #MemberNotFound,
     MissingPermissions,
-    #MissingRequiredArgument,
+    MissingRequiredArgument,
     #RoleNotFound,
 
     Context
 )
 
 #from datetime import datetime, timezone
-from .vars import VERSION
+from .constants import VERSION
 
 async def unexpected(ctx: Context, error: Exception) -> None:
     bot = ctx.bot
@@ -85,6 +85,35 @@ async def error_handler(ctx: Context, error: Exception) -> None:
         pass
     elif isinstance(error, CommandNotFound):
         pass
+
+    elif isinstance(error, MissingRequiredArgument):
+        
+        sig = ctx.command.signature
+        command = ctx.command.name
+        prefix = await ctx.bot.find_prefix(ctx.guild.id)
+
+        if ctx.command.aliases:
+            aliases = ctx.command.aliases
+        else:
+            aliases = []
+
+        aliases.append(command)
+        aliases = " | ".join(aliases)
+
+        phrases = ["*buzzer sound* someone forgot an argument", "yo chief ur missing an argument", "argument missing", "uh oh u forgot an argument"]
+
+        embed = (
+            disnake.Embed(
+                colour=disnake.Colour.light_gray(),
+                description=f"*yo chief u forgot an argument*\n\n```{prefix}{command} {sig}``` ```command aliases: {prefix}{aliases}\n<argument> is required, [argument] is optional```"
+            )
+
+            .set_author(name=random.choice(phrases), icon_url=ctx.author.display_avatar.url)
+            .set_footer(text="anything in angle brackets '<>' is required, anything in regular brackets '[]' is optional")
+        )
+
+        await ctx.send(embed=embed)
+
     elif isinstance(error, CommandOnCooldown):
         await ctx.reply(f"yo chief u are on cooldown for `{error.retry_after:.2f}` seconds")
     elif isinstance(error, CommandInvokeError):

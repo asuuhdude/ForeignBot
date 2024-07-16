@@ -72,7 +72,7 @@ class EconomyCommands(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    @commands.cooldown(1, 15, commands.BucketType.guild)
+    @commands.cooldown(1, 10, commands.BucketType.guild)
     async def beg(self, ctx: commands.Context) -> None:
         faker = Faker()
         accepted_responses = ["oh you poor thing", "sure lol", "here, take my money", "yea i gotchu", "no problem"]
@@ -116,10 +116,7 @@ class EconomyCommands(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 21, commands.BucketType.guild)
     async def rob(self, ctx: commands.Context, user: typing.Optional[disnake.User] = None) -> None:
-        # this arg handling is so bad
-        if user is None:
-            return await ctx.send("who...who r u robbing?")
-        elif user == self.bot.user:
+        if user == self.bot.user:
             return await ctx.reply("u cant rob me lmao")
         elif user.bot:
             return await ctx.send("bro bots have norton antivirus installed, they cant b robbed..")
@@ -190,13 +187,11 @@ class EconomyCommands(commands.Cog):
             await ctx.send(embed=embed_failure)
 
     @commands.command()
-    async def shop(self, ctx: commands.Context, option: typing.Optional[str] = None, item: str = None, amount: int = 1) -> None:
+    async def shop(self, ctx: commands.Context, option: typing.Literal["info", "list", "buy"], item: typing.Optional[str] = None, amount: typing.Optional[int] = 1) -> None:
         with open("./resources/shop.json", "r") as file:
             shop_data = json.load(file)
 
-        if option is None:
-            return await ctx.send(f"bro that command needs more arguments..\n```{await self.bot.find_prefix(ctx.guild.id)}shop <info/buy/list> <item> <amount>```")
-        elif option.lower() == "list":
+        if option.lower() == "list":
             embed = (
                 disnake.Embed(
                     colour=disnake.Colour.og_blurple(),

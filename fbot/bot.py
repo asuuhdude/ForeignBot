@@ -27,7 +27,7 @@ from disnake.ext.tasks import loop
 from colorama import Fore as f
 
 from .db import ForeignBotDB
-from .vars import VERSION, BOT_TOKEN
+from .constants import VERSION, BOT_TOKEN
 from .errors import error_handler
 
 
@@ -114,12 +114,14 @@ class ForeignBot(Bot):
 
     async def create_guild_table(self, message: Message) -> None:
         await self.db.update(
-            "INSERT INTO guilds VALUES (?, ?, ?)",
+            "INSERT INTO guilds VALUES (?, ?, ?, ?, ?)",
 
             (
                 message.guild.id, # guild_id
                 message.guild.name, # name
-                "fb$" # prefix
+                "fb$", # prefix
+                0, # stickied_message
+                0 # stickied_channel
             )
         )
 

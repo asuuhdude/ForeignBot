@@ -5,7 +5,7 @@ import json
 from disnake.ext import commands
 from disnake.ext.commands import has_permissions
 from fbot import ForeignBot
-from fbot.vars import VERSION
+from fbot.constants import VERSION
 
 from pathlib import Path
 
@@ -43,10 +43,8 @@ class UtilityCommands(commands.Cog):
             "set_prefix"
         ]
     )
-    async def setprefix(self, ctx: commands.Context, *, prefix: typing.Optional[str]) -> None:
-        if not prefix:
-            return await ctx.send(f"my guy u need a prefix i can set to\n```{await self.bot.find_prefix(ctx.guild.id)}setprefix <new prefix>```")
-        elif prefix == await self.bot.find_prefix(ctx.guild.id):
+    async def setprefix(self, ctx: commands.Context, *, prefix: str) -> None:
+        if prefix == await self.bot.find_prefix(ctx.guild.id):
             return await ctx.send("uhhh dude u already have that prefix")
         elif prefix == "reset":
             prefix = "fb$"
@@ -115,6 +113,17 @@ class UtilityCommands(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    @commands.command(
+            aliases=[
+                "sticky",
+                "stickymsg",
+                "stickymessage"
+            ]
+    )
+    async def sticky_message(self, ctx: commands.Context, message_id: typing.Optional[int] = None):
+        if not message_id:
+            return await ctx.reply("yo chief i need a message id to set as a sticky message\n`to get your message id, first enable developer mode on your user account through User Settings > Advanced > Developer Mode then right-click your message and 'Copy Message ID'`")
+        
 
 
 def setup(bot):
