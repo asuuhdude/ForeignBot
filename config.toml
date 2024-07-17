@@ -4,14 +4,19 @@
 
 # 
 # profanityFilter: true / false 
-#   true: enable profanity filter (affects the bot's commands and responses, not the users)
+#   true: enable profanity filter (affects the bot's commands and responses, not the users')
 #   false: disable profanity filter
 #
 # achievementsEnabled: true / false
 #   true: enable achievements
 #   false: disable achievements
+#
+# automaticENVCreation: true / false
+#   true: create .env file if none exists at startup
+#   false: disable automatic ENV creation
 profanityFilter = false
 achievementsEnabled = true
+automaticENVCreation = true
 
 [core.commands.economy]
 
@@ -30,7 +35,14 @@ disabledCommands = []
 disableEntirely = false
 disabledCommands = []
 
+
 [core.commands.help]
+
+disableEntirely = false
+disabledCommands = []
+
+
+[core.commands.games]
 
 disableEntirely = false
 disabledCommands = []
