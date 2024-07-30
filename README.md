@@ -5,7 +5,7 @@
     <img src="./resources/text.png">
 </p>
 
-![Static Programming Language Badge](https://img.shields.io/badge/lang-Python%203.9.11-blue)
+![Static Programming Language Badge](https://img.shields.io/badge/lang-Python%203.11.9-blue)
 ![Static Disnake Version Badge](https://img.shields.io/badge/disnake-v2.9.2-blue)
 ![Static Version Badge](https://img.shields.io/badge/latest-v1.0.1v2--prototype-yellow)
 
@@ -50,6 +50,7 @@ Here's a list of all the libraries needed to run the source code:
  - aiosqlite
  - Faker
  - toml
+ - python-dotenv
 
 ### Add the Necessary Files
 
@@ -96,12 +97,13 @@ Order is not important, but anything **bolded** is considered a higher priority.
 - Miscellaneous
   - 
   - More robust achievement handling, current system is held together by hopes and dreams.
-    - *Remove the achievement system?*
+    - ~~*Remove the achievement system?*~~ Nah. Make it an option.
   - **Add the entire gimmick of this Discord bot, customization.**
   - The ability to actually use items, only item with any current ability is the Scary Mask.
   - **Add an actual help command.**
-  - **Upgrade to Python version 3.11 (perferrably before we reach an Alpha phase), since 3.9 will be reaching EoS in 2025.**
+  - ~~**Upgrade to Python version 3.11 (perferrably before we reach an Alpha phase), since 3.9 will be reaching EoS in 2025.**~~
     - *Anything higher than 3.9 should be fine, but 3.11 has a lot of perferrable features.*
+  - Create Docker instance.
 
 # Reporting an Issue/Vulnerability
 
