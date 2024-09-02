@@ -30,7 +30,7 @@
             "reward": "item"
         },
         "achievement_heist": {
-            "displayName": "Professionals Have Standards",
+            "displayName": "Professionals Have Standards.",
             "display": "https://cdn.discordapp.com/attachments/1046997746722295810/1256340565214232666/shico_heist_achievement.png?ex=668069d4&is=667f1854&hm=ac773cd3bc7f86adc47b3aca1236b6be0713052d222da10e96f44a13b56c099d&",
             "description": "Get over 2,000,000 FC$ in a single heist.",
             "rewardType": "currency",

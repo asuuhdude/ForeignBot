@@ -3,7 +3,7 @@ import typing
 import random
 
 from disnake.ext import commands
-from fbot import ForeignBot
+from foreignbot import ForeignBot
 
 from pathlib import Path
 
@@ -41,17 +41,17 @@ class FunCommands(commands.Cog):
                 colour=random.randint(0, 0xffffff),
             )
 
-            .set_author(name=f"how gay is {user.display_name}? 🏳️‍🌈", icon_url=user.display_avatar.url)\
+            .set_author(name=(self.bot.config["core"]["phrases"]["commands"][ctx.command.name].get("title")).format(user=user.display_name), icon_url=user.display_avatar.url)\
             .add_field(
-                name=f"**[{'='*meter}{'  '*total}]**",
+                name=f"**[ {'='*meter}{'  '*total} ]**",
                 value=f"{user.mention} is **{percent:.0f}**% gay"
             )
         )
 
         if percent > 50:
-            embed.set_footer(text=f"🙄 {user.display_name} is so gay bruh")
+            embed.set_footer(text=(self.bot.config["core"]["phrases"]["commands"][ctx.command.name].get("footerAbove")).format(user=user.display_name))
         else:
-            embed.set_footer(text=f"😶 {user.display_name} is not gay")
+            embed.set_footer(text=(self.bot.config["core"]["phrases"]["commands"][ctx.command.name].get("footerBelow")).format(user=user.display_name))
 
         await ctx.send(embed=embed)
 
@@ -78,7 +78,7 @@ class FunCommands(commands.Cog):
                 colour=random.randint(0, 0xffffff),
             )
 
-            .set_author(name=f"how big is {user.display_name}? 🙊", icon_url=user.display_avatar.url)\
+            .set_author(name=(self.bot.config["core"]["phrases"]["commands"][ctx.command.name].get("title")).format(user=user.display_name), icon_url=user.display_avatar.url)\
             .add_field(
                 name=f"**8{'='*meter}D**",
                 value=""
@@ -86,11 +86,13 @@ class FunCommands(commands.Cog):
         )
 
         if meter < 25:
-            embed.set_footer(text=f"🙄 {user.display_name} smh | {meter} =\'s")
+            embed.set_footer(text=((self.bot.config["core"]["phrases"]["commands"][ctx.command.name].get("footerBelow")).format(user=user.display_name) + f" | {meter} =\'s"))
         else:
-            embed.set_footer(text=f"😳 {user.display_name} wsg.. | {meter} =\'s")
+            embed.set_footer(text=((self.bot.config["core"]["phrases"]["commands"][ctx.command.name].get("footerAbove")).format(user=user.display_name) + f" | {meter} =\'s"))
 
         await ctx.send(embed=embed)
+
+    
 
 def setup(bot):
     bot.add_cog(FunCommands(bot))

@@ -7,11 +7,11 @@
 
 ![Static Programming Language Badge](https://img.shields.io/badge/lang-Python%203.11.9-blue)
 ![Static Disnake Version Badge](https://img.shields.io/badge/disnake-v2.9.2-blue)
-![Static Version Badge](https://img.shields.io/badge/latest-v1.0.1v2--prototype-yellow)
+![Static Version Badge](https://img.shields.io/badge/latest-v2.0.0v2--prototype-yellow)
 
 
 A multi-purpose Discord bot written in Python using [Disnake](https://github.com/DisnakeDev/disnake) with the aim to be heavily customizable*
->*Not fully implemented yet *(ironic)*, read "[Project Plans](#project-plans)" or "[todo.md](./todo.md)"
+>*Not fully implemented yet *(ironic)*, read "[Project Plans](#project-plans)"
 
 *This bot is NOT PG, there's no functional profanity filter yet so cover your children's eyes.*
 
@@ -44,6 +44,7 @@ Ensure you also have the correct Python version needed to run the source code. A
 > Since this project is still way behind an alpha version, there's no available `requirements.txt` yet.
 
 Here's a list of all the libraries needed to run the source code:
+```
  - disnake
  - colorama
  - aiohttp
@@ -51,18 +52,7 @@ Here's a list of all the libraries needed to run the source code:
  - Faker
  - toml
  - python-dotenv
-
-### Add the Necessary Files
-
-Some files are not included in the source code for security reasons, so you'll need to add them yourself.
-<br />
-
-An example of this is the `.env` file, create your own in the root directory of the project (should be in the same folder as the source code).
-<br />
-
-The `.env` file should follow:
-```
-TOKEN=YOUR_APPLICATION_TOKEN
+ - aioshutil
 ```
 
 ### Running the Source Code
@@ -91,18 +81,18 @@ Order is not important, but anything **bolded** is considered a higher priority.
   - Create the moderation cog and basic moderation commands.
 - Economy
   - 
-  - Better shop handling and inventory management.
+  - ~~Better shop handling and inventory management.~~ (75% done)
   - Simulated stock market where users can invest in fake stocks for ForeignCoins?
-    - *Maybe add the ability for users to create their own stocks that other users can invest in with a certain amount of ForeignCoins?*
+    - *Maybe add the ability for users to create their own stocks that other users can invest in with a certain amount of ForeignCoins?* -Later
 - Miscellaneous
   - 
   - More robust achievement handling, current system is held together by hopes and dreams.
     - ~~*Remove the achievement system?*~~ Nah. Make it an option.
   - **Add the entire gimmick of this Discord bot, customization.**
-  - The ability to actually use items, only item with any current ability is the Scary Mask.
+  - ~~The ability to actually use items, only item with any current ability is the Scary Mask.~~
   - **Add an actual help command.**
   - ~~**Upgrade to Python version 3.11 (perferrably before we reach an Alpha phase), since 3.9 will be reaching EoS in 2025.**~~
-    - *Anything higher than 3.9 should be fine, but 3.11 has a lot of perferrable features.*
+    - ~~*Anything higher than 3.9 should be fine, but 3.11 has a lot of perferrable features.*~~
   - Create Docker instance.
 
 # Reporting an Issue/Vulnerability

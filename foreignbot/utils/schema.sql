@@ -23,3 +23,9 @@ CREATE TABLE IF NOT EXISTS general_data (
     version TEXT,
     ds_version INT
 );
+
+CREATE TABLE IF NOT EXISTS user_inventories (
+    user_id BIGINT PRIMARY KEY,
+    inventory TEXT,
+    achievements TEXT
+)

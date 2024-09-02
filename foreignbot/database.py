@@ -14,9 +14,9 @@ class ForeignBotDB:
     @classmethod
     async def create(cls: typing.Type[ForeignBotDB]) -> ForeignBotDB:
         self = cls()
-        self.db = await aiosqlite.connect("./db/fbot.db")
+        self.db = await aiosqlite.connect("./database/fbot.db")
 
-        with open("./fbot/utils/schema.sql") as schema:
+        with open("./foreignbot/utils/schema.sql") as schema:
             await self.db.executescript(schema.read())
 
         return self

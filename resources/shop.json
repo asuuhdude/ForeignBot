@@ -8,58 +8,87 @@
                 "price": 1000,
                 "description": "A game of chance. 50% chance of winning and doubling your held money, 50% chance of losing and losing all your money.",
                 "icon": "<:shico_russian_roulette:1254950050430189658>",
-                "extraInfo": "Added in version 1.0.1v2-prototype"
+                "extraInfo": "Added in version 1.0.1v2-prototype",
+                "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_russian_roulette.png?raw=true"
             },
             "vat_of_urine": {
                 "displayName": "VAT of Urine",
                 "price": 250,
                 "description": "So this is what DOOM meant..",
                 "icon": "<:shico_vat_of_urine:1254972529026666576>",
-                "extraInfo": "..behold y'all, the digital VATs of urine. Added in version 1.0.1v2-prototype"
+                "extraInfo": "..behold y'all, the digital VATs of urine. Added in version 1.0.1v2-prototype",
+                "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_vat_of_urine.png?raw=true"
             },
             "scary_mask": {
                 "displayName": "Scary Mask",
                 "price": 25000,
                 "description": "It's scary, right? Lowers your chance of being robbed, does not stack.",
                 "icon": "<:shico_scary_mask:1254976242839715913>",
-                "extraInfo": "Passive Item, does not stop heists. Added in version 1.0.1v2-prototype"
+                "extraInfo": "Passive Item, does not stop heists. Added in version 1.0.1v2-prototype",
+                "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_scary_mask.png?raw=true"
             },
             "golden_pan": {
                 "displayName": "Golden Pan",
                 "price": 999999999,
                 "description": "A legendary item, if bought guarantees buyer bragging rights.",
                 "icon": "<:shico_golden_pan:1254950032738877601>",
-                "extraInfo": "Added in version 1.0.1v2-prototype"
+                "extraInfo": "UB3R PWN4G3!!!! Added in version 1.0.1v2-prototype",
+                "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_golden_pan.png?raw=true"
             },
             "inf_money_glitch": {
                 "displayName": "Infinite Money Glitch",
                 "price": 999999999999999999,
                 "description": "devs forgot to patch this LOL, 100% working 2007",
                 "icon": "<:shico_infinite_money_glitch:1254950041244930108>",
-                "extraInfo": "trust, bro, this works. Added in version 1.0.1v2-prototype"
+                "extraInfo": "trust, bro, this works. Added in version 1.0.1v2-prototype",
+                "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_infinite_money_glitch.png?raw=true"
             }
         }
     },
 
     "hidden_items": {
 
-        "hiden_codex": {
+        "hidden_codex": {
             "displayName": "Hidden Codex",
             "description": "I like what this book is whispering to me.",
             "icon": "<:shico_hidden_codex:1254998638782844999>",
-            "extraInfo": "Added in version 1.0.1v2-prototype"
+            "extraInfo": "Added in version 1.0.1v2-prototype",
+            "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_hidden_codex.png?raw=true"
         },
         "scary_mask_special": {
             "displayName": "Scary Mask",
-            "description": "Mask up folks.",
+            "description": "Reskin of the Scary Mask. Mask up folks.",
             "icon": "<:shico_scary_mask_special:1256025466259636325>",
-            "extraInfo": "Reskin of the Scary Mask. Added in version 1.0.1v2-prototype"
+            "extraInfo": "Added in version 1.0.1v2-prototype",
+            "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_scary_mask_special.png?raw=true"
         },
         "item": {
             "displayName": "itemDisplayName",
             "description": "itemDescription",
             "icon": "<:shico_item:1256338775043473458>",
-            "extraInfo": ""
+            "extraInfo": "...",
+            "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_item.png?raw=true"
+        },
+        "finders_fee": {
+            "displayName": "Finder's Fee",
+            "description": "Rewarded to those who found and reported bugs for ForeignBot on Discord.",
+            "icon": "<:shico_finders_fee:1273725600628215889>",
+            "extraInfo": "Added in version 2.0.0v2-prototype",
+            "thumbnail": "https://github.com/asuuhdude/ForeignBot/blob/main/resources/shico_finders_fee.png?raw=true"
+        },
+        "ancient_mask": {
+            "displayName": "Ancient Mask",
+            "description": "Is it from the future? Or is it from the past? Whoever wore this must've been influential.",
+            "icon": "<:shico_ancient_mask:1273774577897439262>",
+            "extraInfo": "It reeks of booze. Added in version 2.0.0v2-prototype",
+            "thumbnail": "https://cdn.discordapp.com/attachments/1046997746722295810/1273774515293262018/shico_ancient_mask.png?ex=66bfd676&is=66be84f6&hm=7554b8b9997f15131d2b4a3c01437d2efba2625e5b72e54639e38c5cc72db8ac&"
+        },
+        "the_funk": {
+            "displayName": "The Funk",
+            "description": "It's about the size of a medicine ball.",
+            "icon": "",
+            "extraInfo": "Added in version 2.0.0v2-prototype",
+            "thumbnail": ""
         }
     }
 }

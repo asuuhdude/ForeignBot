@@ -2,7 +2,7 @@
 # import typing
 
 from disnake.ext import commands
-from fbot import ForeignBot
+from foreignbot import ForeignBot
 
 from pathlib import Path
 

@@ -1,0 +1,88 @@
+
+
+
+
+
+core:
+
+  profanityFilter: false # not implemented
+  achievementsEnabled: true
+  automaticENVCreation: true
+  informUsersAboutCommandAvailability: false
+
+  # log settings
+  # AVAILABLE COMPRESSION FORMATS : zip, tar (not a compression format), tar.bz2
+  purgeLogs: false
+  favoredLogCompressionFormat: "tar.bz2"
+
+  enableEasterEggs: true
+  commandPrefix: "fb$" # fallback ! will not affect servers that changed their prefix !
+  version: "v2.0.0v2-prototype"
+
+
+  activities:
+
+    normal:
+      list: [
+        "ur mom LMAOOOOOOOOOOOOo",
+        "dead internet theory mfs when i pull up"
+      ]
+
+    holiday:
+      list_festive: [
+        "status"
+      ]
+
+      list_spooky: [
+        "status"
+      ]
+
+
+  phrases:
+
+    onCommandError:
+
+      invalidOrMissingArgument: ["*buzzer sound* someone forgot an argument", "yo chief ur missing an argument", "argument missing", "uh oh u forgot an argument"]
+      onCommandCooldown: ["very loud buzzer sfx", "yo slow down chief", "slow ur parole", "ay yo cool it", "cool ur jets"]
+      unexpectedError: ["ops got in my code, sry", "im bugging they must not kno im thugging", "epic fail", "something went wrong"]
+      onDisabledCommand: "that command is disabled bro"
+      missingPermissions: "im not allowed to do that, i wasnt invited with the proper permissions"
+
+    commands:
+
+      howgay:
+        title: "how gay is {user}? 🏳️‍🌈"
+        footerAbove: "🙄 {user} is so gay bruh"
+        footerBelow: "😶 {user} is not gay"
+      
+      dicksize:
+        title: "how big is {user}? 🙊"
+        footerAbove: "😳 {user} wsg.."
+        footerBelow: "🙄 {user} smh"
+
+
+  commands:
+
+    economy:
+      enabled: true
+      disabledCommands: []
+
+    fun:
+      enabled: true
+      disabledCommands: []
+
+    games:
+      enabled: true
+      disabledCommands: []
+
+    help:
+      enabled: true
+      disabledCommands: []
+
+    moderation:
+      enabled: true
+      disabledCommands: []
+
+    utility:
+      enabled: true
+      disabledCommands: []

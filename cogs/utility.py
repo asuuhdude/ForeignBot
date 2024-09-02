@@ -4,8 +4,8 @@ import json
 
 from disnake.ext import commands
 from disnake.ext.commands import has_permissions
-from fbot import ForeignBot
-from fbot.constants import VERSION
+from foreignbot import ForeignBot
+from foreignbot.constants import VERSION
 
 from pathlib import Path
 
@@ -21,7 +21,7 @@ class UtilityCommands(commands.Cog):
         return await super().cog_before_invoke(ctx)
 
     async def fetch_user_inventory(self, user_id: int) -> tuple:
-        with open("./db/user_inventories.json", "r") as file:
+        with open("./database/user_inventories.json", "r") as file:
             data = json.load(file)
         
         return (data.get(f"{user_id}").get("inventory"), data.get(f"{user_id}").get("achievements"))
@@ -67,12 +67,13 @@ class UtilityCommands(commands.Cog):
             "setnotis"
         ]
     )
-    async def notifications(self, ctx: commands.Context, value: typing.Optional[bool] = None) -> None:
+    async def notifications(self, ctx: commands.Context, value: typing.Literal["on", "off"]) -> None:
         if not await self.bot.check_user_exists(ctx.author.id):
             await self.bot.create_user_table(ctx.author.id)
 
-        if value is None:
-            return await ctx.send(f"brotha i need smth to change ur setting to\n```{await self.bot.find_prefix(ctx.guild.id)}notifications <true/false>```")
+        if value not in ["on", "off"]:
+            return await ctx.reply("value must be either `on` or `off`")
+            
         
         embed = (
             disnake.Embed(
@@ -80,10 +81,10 @@ class UtilityCommands(commands.Cog):
             )
         )
 
-        if value: 
+        if value == "on": 
             embed.description = "notifications have been turned **on**"
             embed.set_footer(text="swag mode: activated | this affects all servers youre in with me")
-        else: 
+        elif value == "off": 
             embed.description = "notifications have been turned **off**"
             embed.set_footer(text="literally 1984 | this affects all servers youre in with me")
 
@@ -112,17 +113,6 @@ class UtilityCommands(commands.Cog):
         )
 
         await ctx.send(embed=embed)
-
-    @commands.command(
-            aliases=[
-                "sticky",
-                "stickymsg",
-                "stickymessage"
-            ]
-    )
-    async def sticky_message(self, ctx: commands.Context, message_id: typing.Optional[int] = None):
-        if not message_id:
-            return await ctx.reply("yo chief i need a message id to set as a sticky message\n`to get your message id, first enable developer mode on your user account through User Settings > Advanced > Developer Mode then right-click your message and 'Copy Message ID'`")
         
 
 

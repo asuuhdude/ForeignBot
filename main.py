@@ -3,10 +3,10 @@ import sys
 from pathlib import Path
 if not Path("./.env").exists():
 
-    from toml import load
+    from yaml import safe_load
 
-    with open("./config.toml", "r", encoding="utf8") as file:
-        config = load(file)
+    with open("./config.yaml", "r", encoding="utf8") as file:
+        config = safe_load(file)
 
     if config["core"].get("automaticENVCreation"):
         print("no .env file found, creating one...")
@@ -22,7 +22,7 @@ if not Path("./.env").exists():
     sys.exit(1)
 
 
-from fbot import ForeignBot
+from foreignbot import ForeignBot
 
 if __name__ == "__main__":
     ForeignBot().run()
