@@ -17,15 +17,25 @@ core:
 
   enableEasterEggs: true
   commandPrefix: "fb$" # fallback ! will not affect servers that changed their prefix !
-  version: "v2.0.0v2-prototype"
+  version: "2.0.0v2-prototype"
 
 
   activities:
-
     normal:
-      list: [
-        "ur mom LMAOOOOOOOOOOOOo",
-        "dead internet theory mfs when i pull up"
+      
+      typePlaying: [
+        "ur mom LMAOOOOOOAOOOOO",
+        "with deez nuts lmao gottem",
+        "wit ur girl :shrug:"
+      ]
+
+      typeListening: [
+        "Playboi Carti",
+        "Kendrick Lamar",
+        "Steve Lacy",
+        "Nujabes",
+        "J Dilla",
+        "Felicathegoat"
       ]
 
     holiday:

@@ -31,29 +31,38 @@ A multi-purpose Discord bot written in Python using [Disnake](https://github.com
 
 ## Installation
 > [!NOTE]
-> You're expected to have some sort of knowledge of creating a Discord application through the [Discord Developer Portal](https://discord.com/developers/applications) when going into this.
+> You're expected to have some sort of knowledge of basic Python operations and creating a Discord application through the [Discord Developer Portal](https://discord.com/developers/applications) when going into this.
+
+A few things to note, ForeignBot *should* natively support Windows and Linux (Debian/Ubuntu) out of the box. I will not be adding Mac support myself. If you'd like to add it yourself, you're welcome to fork the project, though theoretically it should support Mac unless something in the code is coded **specifically** for an OS. ***Here be dragons!***
 
 ### Obtaining the Source Code
-There are a variety of ways of obtaining the source code, you can either download it from the `Code` button at the top of the repository, clone it from GitHub, or download a release from the [releases page](https://github.com/asuuhdude/ForeignBot/releases).
+There are a variety of ways of obtaining the source code, you can choose whatever flavor suits you best.
 
-Ensure you also have the correct Python version needed to run the source code. Any version above 3.7 should work, just make sure all the required libraries are able to run on your version.
+#### Via command-line:
+```
+git clone https://github.com/asuuhdude/ForeignBot.git
+```
+*or if you're using GitHub CLI for whatever reason:*
+```
+gh repo clone asuuhdude/ForeignBot
+```
+<br />
+
+#### Via GitHub's website:
+There's a big green `Code` button near the top of the page, click that then `Download ZIP`.
+
+![screenshot](https://cdn.discordapp.com/attachments/1046997746722295810/1285361596658483200/image.png?ex=66e9fdc5&is=66e8ac45&hm=e0823330f60d2cb5f819fbf64062e198a409cb6b2303dfd2527af6795a9a7f6c&)
+
+<br />
+
+#### Via the 'releases' tab:
+TODO
 
 ### Installing Libraries
 
-> [!NOTE]
-> Since this project is still way behind an alpha version, there's no available `requirements.txt` yet.
+Ensure your Python version is above 3.7, and run the following command within the projects directory: `pip install -r requirements.txt`
 
-Here's a list of all the libraries needed to run the source code:
-```
- - disnake
- - colorama
- - aiohttp
- - aiosqlite
- - Faker
- - toml
- - python-dotenv
- - aioshutil
-```
+If done correctly, you should see a bunch of text fly by and then successfully finish.
 
 ### Running the Source Code
 
@@ -68,12 +77,12 @@ Optimization and efficiency is my second priority during this time, if you find 
 Keep in mind the source code during this time will look chaotic, as updates go along and new features are added the source code will be more and more presentable.
 
 # Project Plans
-Here's a list of what I have planned for future features, explained in more detail compared to the [todo.md](./todo.md) file.
+Here's a list of what I have planned for future features.
 <br />
 
 If anything ends with a question mark then it isn't fully decided whether it will be added or not. No guarantees!
 <br />
-Order is not important, but anything **bolded** is considered a higher priority. However [todo.md](./todo.md) follows a structural heirarchy.
+Order is not important, but anything **bolded** is considered a higher priority.
 
 
 - Moderation
@@ -84,6 +93,7 @@ Order is not important, but anything **bolded** is considered a higher priority.
   - ~~Better shop handling and inventory management.~~ (75% done)
   - Simulated stock market where users can invest in fake stocks for ForeignCoins?
     - *Maybe add the ability for users to create their own stocks that other users can invest in with a certain amount of ForeignCoins?* -Later
+  - Add the ability for items to have attributes in the shop.json for more customizability. Similar to how TF2 has a item schema.
 - Miscellaneous
   - 
   - More robust achievement handling, current system is held together by hopes and dreams.
