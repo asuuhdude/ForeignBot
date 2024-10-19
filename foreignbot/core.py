@@ -30,6 +30,8 @@ from disnake import (
     __version__,
 )
 
+import lupa.luajit21 as lupa
+
 from disnake.ext.commands import Bot, when_mentioned_or, Context
 from disnake.ext.tasks import loop
 from colorama import Fore as f
@@ -64,6 +66,9 @@ class ForeignBot(Bot):
 
         colorama.init()
         print(f"{f.YELLOW}(core.py) ForeignBot.__init__ :{f.WHITE} colorama has been initialized")
+
+        self.lua_runtime = lupa.LuaRuntime(unpack_returned_tuples=True)
+        print(f"{f.YELLOW}(core.py) ForeignBot.__init__ :{f.WHITE} initialized lua runtime")
 
         for file in os.listdir("./cogs/"):
             if not file.startswith("_"):
@@ -253,10 +258,12 @@ class ForeignBot(Bot):
 
     @loop(seconds=540)
     async def update_presence(self) -> None:
+        status = random.choice(self.config["core"]["activities"]["normal"]["typeListening"] + self.config["core"]["activities"]["normal"]["typePlaying"])
+
         await self.change_presence(
             activity=Activity(
-                type=ActivityType.playing,
-                name = random.choice(self.config["core"]["activities"]["normal"]["list"])
+                type = ActivityType.listening if status in self.config["core"]["activities"]["normal"]["typeListening"] else ActivityType.playing,
+                name = status
             )
         )
 
